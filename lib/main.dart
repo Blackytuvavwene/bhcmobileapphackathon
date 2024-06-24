@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'src/src.dart';
@@ -9,6 +10,9 @@ import 'src/src.dart';
 Future main() async {
   // ensure initialization
   WidgetsFlutterBinding.ensureInitialized();
+
+  // initialize local storage
+  await initLocalStorage();
 
   // load our .env file
   await dotenv.load();

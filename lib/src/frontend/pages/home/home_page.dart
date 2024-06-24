@@ -83,6 +83,9 @@ class HomePage extends HookConsumerWidget {
     final user = ref.watch(getCurrentUserProvider);
     // debug log session
     debugPrint('Home session: $user');
+
+    // get properties
+    final properties = ref.watch(propertiesNotifierProvider);
     return CustomScrollView(
       slivers: [
         SliverAppBar(
@@ -126,11 +129,33 @@ class HomePage extends HookConsumerWidget {
             ),
           ),
         ),
-        SliverList(
-          delegate: SliverChildListDelegate(
-            [],
-          ),
-        ),
+        properties.when(data: (data) {
+          if (data.isEmpty) {
+            return const SliverFillRemaining(
+              child: Center(
+                child: Text('No properties found'),
+              ),
+            );
+          }
+          return SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return Text(data[index].name);
+              },
+              childCount: data.length,
+            ),
+          );
+        }, error: (objec, error) {
+          return SliverFillRemaining(
+            child: Text(error.toString()),
+          );
+        }, loading: () {
+          return const SliverFillRemaining(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }),
       ],
     );
   }

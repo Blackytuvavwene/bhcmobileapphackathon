@@ -13,6 +13,11 @@ part 'appwrite_endpoint.g.dart';
 class AppwriteEndpointConstant {
   static String endpoint = dotenv.get('APPWRITE_ENDPOINT');
   static String projectID = dotenv.get('APPWRITE_PROJECT_ID');
+
+  // database
+  static String databaseID = dotenv.get('APPWRITE_BHCMOBILEDATABASE_ID');
+  static String propertiesCollectionID =
+      dotenv.get('APPWRITE_PROPERTYCOLLECTION_ID');
 }
 
 // provider for appwrite client
