@@ -10,17 +10,13 @@ _$PropertyImpl _$$PropertyImplFromJson(Map<String, dynamic> json) =>
     _$PropertyImpl(
       name: json['name'] as String,
       value: json['value'] as String,
-      propertyID: json['propertyID'] as String?,
+      id: json['id'] as String,
       category: json['category'] as String?,
-      location: json['location'] == null
-          ? null
-          : PropertyLocation.fromJson(json['location'] as Map<String, dynamic>),
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
-          ? null
-          : DateTime.parse(json['updatedAt'] as String),
+      location:
+          PropertyLocation.fromJson(json['location'] as Map<String, dynamic>),
+      createdAt: json['createdAt'] as String,
+      updatedAt: json['updatedAt'] as String,
+      description: json['description'] as String,
       images: (json['images'] as List<dynamic>?)
           ?.map((e) => PropertyImage.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -30,28 +26,25 @@ Map<String, dynamic> _$$PropertyImplToJson(_$PropertyImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'value': instance.value,
-      'propertyID': instance.propertyID,
+      'id': instance.id,
       'category': instance.category,
       'location': instance.location,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
+      'createdAt': instance.createdAt,
+      'updatedAt': instance.updatedAt,
+      'description': instance.description,
       'images': instance.images,
     };
 
 _$PropertyLocationImpl _$$PropertyLocationImplFromJson(
         Map<String, dynamic> json) =>
     _$PropertyLocationImpl(
-      latitude: (json['latitude'] as num).toDouble(),
-      longitude: (json['longitude'] as num).toDouble(),
-      address: json['address'] as String?,
+      address: json['address'] as String,
       type: $enumDecodeNullable(_$PropertyLocationTypeEnumMap, json['type']),
     );
 
 Map<String, dynamic> _$$PropertyLocationImplToJson(
         _$PropertyLocationImpl instance) =>
     <String, dynamic>{
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
       'address': instance.address,
       'type': _$PropertyLocationTypeEnumMap[instance.type],
     };
@@ -64,22 +57,20 @@ const _$PropertyLocationTypeEnumMap = {
 
 _$PropertyImageImpl _$$PropertyImageImplFromJson(Map<String, dynamic> json) =>
     _$PropertyImageImpl(
-      imageUrl: json['imageUrl'] as String,
-      propertyID: json['propertyID'] as String?,
-      imageID: json['imageID'] as String?,
-      name: json['name'] as String?,
-      width: (json['width'] as num).toDouble(),
-      height: (json['height'] as num).toDouble(),
+      url: json['url'] as String?,
+      id: json['id'] as String,
+      alt: json['alt'] as String,
+      updatedAt: json['updatedAt'] as String,
+      createdAt: json['createdAt'] as String,
     );
 
 Map<String, dynamic> _$$PropertyImageImplToJson(_$PropertyImageImpl instance) =>
     <String, dynamic>{
-      'imageUrl': instance.imageUrl,
-      'propertyID': instance.propertyID,
-      'imageID': instance.imageID,
-      'name': instance.name,
-      'width': instance.width,
-      'height': instance.height,
+      'url': instance.url,
+      'id': instance.id,
+      'alt': instance.alt,
+      'updatedAt': instance.updatedAt,
+      'createdAt': instance.createdAt,
     };
 
 _$PropertyPurchaseImpl _$$PropertyPurchaseImplFromJson(
@@ -91,6 +82,11 @@ _$PropertyPurchaseImpl _$$PropertyPurchaseImplFromJson(
           Property.fromJson(json['propertyPurchased'] as Map<String, dynamic>),
       propertyPurchasedBy: PropertyPurchasedBy.fromJson(
           json['propertyPurchasedBy'] as Map<String, dynamic>),
+      purchaseID: json['purchaseID'] as String?,
+      documents: (json['documents'] as List<dynamic>)
+          .map((e) =>
+              PropertyPurchaseDocuments.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$PropertyPurchaseImplToJson(
@@ -100,6 +96,8 @@ Map<String, dynamic> _$$PropertyPurchaseImplToJson(
       'date': instance.date.toIso8601String(),
       'propertyPurchased': instance.propertyPurchased,
       'propertyPurchasedBy': instance.propertyPurchasedBy,
+      'purchaseID': instance.purchaseID,
+      'documents': instance.documents,
     };
 
 _$PropertyPurchasedByImpl _$$PropertyPurchasedByImplFromJson(
@@ -114,4 +112,18 @@ Map<String, dynamic> _$$PropertyPurchasedByImplToJson(
     <String, dynamic>{
       'userID': instance.userID,
       'name': instance.name,
+    };
+
+_$PropertyPurchaseDocumentsImpl _$$PropertyPurchaseDocumentsImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PropertyPurchaseDocumentsImpl(
+      name: json['name'] as String,
+      url: json['url'] as String,
+    );
+
+Map<String, dynamic> _$$PropertyPurchaseDocumentsImplToJson(
+        _$PropertyPurchaseDocumentsImpl instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'url': instance.url,
     };

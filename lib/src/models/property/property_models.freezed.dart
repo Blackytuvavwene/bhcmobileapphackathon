@@ -22,11 +22,12 @@ Property _$PropertyFromJson(Map<String, dynamic> json) {
 mixin _$Property {
   String get name => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
-  String? get propertyID => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String? get category => throw _privateConstructorUsedError;
-  PropertyLocation? get location => throw _privateConstructorUsedError;
-  DateTime? get createdAt => throw _privateConstructorUsedError;
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
+  PropertyLocation get location => throw _privateConstructorUsedError;
+  String get createdAt => throw _privateConstructorUsedError;
+  String get updatedAt => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
   List<PropertyImage>? get images => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,14 +44,15 @@ abstract class $PropertyCopyWith<$Res> {
   $Res call(
       {String name,
       String value,
-      String? propertyID,
+      String id,
       String? category,
-      PropertyLocation? location,
-      DateTime? createdAt,
-      DateTime? updatedAt,
+      PropertyLocation location,
+      String createdAt,
+      String updatedAt,
+      String description,
       List<PropertyImage>? images});
 
-  $PropertyLocationCopyWith<$Res>? get location;
+  $PropertyLocationCopyWith<$Res> get location;
 }
 
 /// @nodoc
@@ -68,11 +70,12 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
   $Res call({
     Object? name = null,
     Object? value = null,
-    Object? propertyID = freezed,
+    Object? id = null,
     Object? category = freezed,
-    Object? location = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
+    Object? location = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? description = null,
     Object? images = freezed,
   }) {
     return _then(_value.copyWith(
@@ -84,26 +87,30 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
-      propertyID: freezed == propertyID
-          ? _value.propertyID
-          : propertyID // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String?,
-      location: freezed == location
+      location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as PropertyLocation?,
-      createdAt: freezed == createdAt
+              as PropertyLocation,
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: freezed == updatedAt
+              as String,
+      updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
       images: freezed == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
@@ -113,12 +120,8 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
 
   @override
   @pragma('vm:prefer-inline')
-  $PropertyLocationCopyWith<$Res>? get location {
-    if (_value.location == null) {
-      return null;
-    }
-
-    return $PropertyLocationCopyWith<$Res>(_value.location!, (value) {
+  $PropertyLocationCopyWith<$Res> get location {
+    return $PropertyLocationCopyWith<$Res>(_value.location, (value) {
       return _then(_value.copyWith(location: value) as $Val);
     });
   }
@@ -135,15 +138,16 @@ abstract class _$$PropertyImplCopyWith<$Res>
   $Res call(
       {String name,
       String value,
-      String? propertyID,
+      String id,
       String? category,
-      PropertyLocation? location,
-      DateTime? createdAt,
-      DateTime? updatedAt,
+      PropertyLocation location,
+      String createdAt,
+      String updatedAt,
+      String description,
       List<PropertyImage>? images});
 
   @override
-  $PropertyLocationCopyWith<$Res>? get location;
+  $PropertyLocationCopyWith<$Res> get location;
 }
 
 /// @nodoc
@@ -159,11 +163,12 @@ class __$$PropertyImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? value = null,
-    Object? propertyID = freezed,
+    Object? id = null,
     Object? category = freezed,
-    Object? location = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
+    Object? location = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? description = null,
     Object? images = freezed,
   }) {
     return _then(_$PropertyImpl(
@@ -175,26 +180,30 @@ class __$$PropertyImplCopyWithImpl<$Res>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
-      propertyID: freezed == propertyID
-          ? _value.propertyID
-          : propertyID // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String?,
-      location: freezed == location
+      location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as PropertyLocation?,
-      createdAt: freezed == createdAt
+              as PropertyLocation,
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: freezed == updatedAt
+              as String,
+      updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
       images: freezed == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
@@ -209,11 +218,12 @@ class _$PropertyImpl implements _Property {
   const _$PropertyImpl(
       {required this.name,
       required this.value,
-      this.propertyID,
+      required this.id,
       this.category,
-      this.location,
-      this.createdAt,
-      this.updatedAt,
+      required this.location,
+      required this.createdAt,
+      required this.updatedAt,
+      required this.description,
       final List<PropertyImage>? images})
       : _images = images;
 
@@ -225,15 +235,17 @@ class _$PropertyImpl implements _Property {
   @override
   final String value;
   @override
-  final String? propertyID;
+  final String id;
   @override
   final String? category;
   @override
-  final PropertyLocation? location;
+  final PropertyLocation location;
   @override
-  final DateTime? createdAt;
+  final String createdAt;
   @override
-  final DateTime? updatedAt;
+  final String updatedAt;
+  @override
+  final String description;
   final List<PropertyImage>? _images;
   @override
   List<PropertyImage>? get images {
@@ -246,7 +258,7 @@ class _$PropertyImpl implements _Property {
 
   @override
   String toString() {
-    return 'Property(name: $name, value: $value, propertyID: $propertyID, category: $category, location: $location, createdAt: $createdAt, updatedAt: $updatedAt, images: $images)';
+    return 'Property(name: $name, value: $value, id: $id, category: $category, location: $location, createdAt: $createdAt, updatedAt: $updatedAt, description: $description, images: $images)';
   }
 
   @override
@@ -256,8 +268,7 @@ class _$PropertyImpl implements _Property {
             other is _$PropertyImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.value, value) || other.value == value) &&
-            (identical(other.propertyID, propertyID) ||
-                other.propertyID == propertyID) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.location, location) ||
@@ -266,6 +277,8 @@ class _$PropertyImpl implements _Property {
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             const DeepCollectionEquality().equals(other._images, _images));
   }
 
@@ -275,11 +288,12 @@ class _$PropertyImpl implements _Property {
       runtimeType,
       name,
       value,
-      propertyID,
+      id,
       category,
       location,
       createdAt,
       updatedAt,
+      description,
       const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
@@ -300,11 +314,12 @@ abstract class _Property implements Property {
   const factory _Property(
       {required final String name,
       required final String value,
-      final String? propertyID,
+      required final String id,
       final String? category,
-      final PropertyLocation? location,
-      final DateTime? createdAt,
-      final DateTime? updatedAt,
+      required final PropertyLocation location,
+      required final String createdAt,
+      required final String updatedAt,
+      required final String description,
       final List<PropertyImage>? images}) = _$PropertyImpl;
 
   factory _Property.fromJson(Map<String, dynamic> json) =
@@ -315,15 +330,17 @@ abstract class _Property implements Property {
   @override
   String get value;
   @override
-  String? get propertyID;
+  String get id;
   @override
   String? get category;
   @override
-  PropertyLocation? get location;
+  PropertyLocation get location;
   @override
-  DateTime? get createdAt;
+  String get createdAt;
   @override
-  DateTime? get updatedAt;
+  String get updatedAt;
+  @override
+  String get description;
   @override
   List<PropertyImage>? get images;
   @override
@@ -338,9 +355,7 @@ PropertyLocation _$PropertyLocationFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PropertyLocation {
-  double get latitude => throw _privateConstructorUsedError;
-  double get longitude => throw _privateConstructorUsedError;
-  String? get address => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
   PropertyLocationType? get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -355,11 +370,7 @@ abstract class $PropertyLocationCopyWith<$Res> {
           PropertyLocation value, $Res Function(PropertyLocation) then) =
       _$PropertyLocationCopyWithImpl<$Res, PropertyLocation>;
   @useResult
-  $Res call(
-      {double latitude,
-      double longitude,
-      String? address,
-      PropertyLocationType? type});
+  $Res call({String address, PropertyLocationType? type});
 }
 
 /// @nodoc
@@ -375,24 +386,14 @@ class _$PropertyLocationCopyWithImpl<$Res, $Val extends PropertyLocation>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? latitude = null,
-    Object? longitude = null,
-    Object? address = freezed,
+    Object? address = null,
     Object? type = freezed,
   }) {
     return _then(_value.copyWith(
-      latitude: null == latitude
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      address: freezed == address
+      address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -409,11 +410,7 @@ abstract class _$$PropertyLocationImplCopyWith<$Res>
       __$$PropertyLocationImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {double latitude,
-      double longitude,
-      String? address,
-      PropertyLocationType? type});
+  $Res call({String address, PropertyLocationType? type});
 }
 
 /// @nodoc
@@ -427,24 +424,14 @@ class __$$PropertyLocationImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? latitude = null,
-    Object? longitude = null,
-    Object? address = freezed,
+    Object? address = null,
     Object? type = freezed,
   }) {
     return _then(_$PropertyLocationImpl(
-      latitude: null == latitude
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      address: freezed == address
+      address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -456,27 +443,19 @@ class __$$PropertyLocationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PropertyLocationImpl implements _PropertyLocation {
-  const _$PropertyLocationImpl(
-      {required this.latitude,
-      required this.longitude,
-      this.address,
-      this.type});
+  const _$PropertyLocationImpl({required this.address, this.type});
 
   factory _$PropertyLocationImpl.fromJson(Map<String, dynamic> json) =>
       _$$PropertyLocationImplFromJson(json);
 
   @override
-  final double latitude;
-  @override
-  final double longitude;
-  @override
-  final String? address;
+  final String address;
   @override
   final PropertyLocationType? type;
 
   @override
   String toString() {
-    return 'PropertyLocation(latitude: $latitude, longitude: $longitude, address: $address, type: $type)';
+    return 'PropertyLocation(address: $address, type: $type)';
   }
 
   @override
@@ -484,18 +463,13 @@ class _$PropertyLocationImpl implements _PropertyLocation {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PropertyLocationImpl &&
-            (identical(other.latitude, latitude) ||
-                other.latitude == latitude) &&
-            (identical(other.longitude, longitude) ||
-                other.longitude == longitude) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, latitude, longitude, address, type);
+  int get hashCode => Object.hash(runtimeType, address, type);
 
   @JsonKey(ignore: true)
   @override
@@ -514,20 +488,14 @@ class _$PropertyLocationImpl implements _PropertyLocation {
 
 abstract class _PropertyLocation implements PropertyLocation {
   const factory _PropertyLocation(
-      {required final double latitude,
-      required final double longitude,
-      final String? address,
+      {required final String address,
       final PropertyLocationType? type}) = _$PropertyLocationImpl;
 
   factory _PropertyLocation.fromJson(Map<String, dynamic> json) =
       _$PropertyLocationImpl.fromJson;
 
   @override
-  double get latitude;
-  @override
-  double get longitude;
-  @override
-  String? get address;
+  String get address;
   @override
   PropertyLocationType? get type;
   @override
@@ -542,12 +510,11 @@ PropertyImage _$PropertyImageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PropertyImage {
-  String get imageUrl => throw _privateConstructorUsedError;
-  String? get propertyID => throw _privateConstructorUsedError;
-  String? get imageID => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  double get width => throw _privateConstructorUsedError;
-  double get height => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get alt => throw _privateConstructorUsedError;
+  String get updatedAt => throw _privateConstructorUsedError;
+  String get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -562,12 +529,7 @@ abstract class $PropertyImageCopyWith<$Res> {
       _$PropertyImageCopyWithImpl<$Res, PropertyImage>;
   @useResult
   $Res call(
-      {String imageUrl,
-      String? propertyID,
-      String? imageID,
-      String? name,
-      double width,
-      double height});
+      {String? url, String id, String alt, String updatedAt, String createdAt});
 }
 
 /// @nodoc
@@ -583,38 +545,33 @@ class _$PropertyImageCopyWithImpl<$Res, $Val extends PropertyImage>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? imageUrl = null,
-    Object? propertyID = freezed,
-    Object? imageID = freezed,
-    Object? name = freezed,
-    Object? width = null,
-    Object? height = null,
+    Object? url = freezed,
+    Object? id = null,
+    Object? alt = null,
+    Object? updatedAt = null,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
-      imageUrl: null == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
-      propertyID: freezed == propertyID
-          ? _value.propertyID
-          : propertyID // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageID: freezed == imageID
-          ? _value.imageID
-          : imageID // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      width: null == width
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as double,
-      height: null == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as double,
+      alt: null == alt
+          ? _value.alt
+          : alt // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -628,12 +585,7 @@ abstract class _$$PropertyImageImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String imageUrl,
-      String? propertyID,
-      String? imageID,
-      String? name,
-      double width,
-      double height});
+      {String? url, String id, String alt, String updatedAt, String createdAt});
 }
 
 /// @nodoc
@@ -647,38 +599,33 @@ class __$$PropertyImageImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? imageUrl = null,
-    Object? propertyID = freezed,
-    Object? imageID = freezed,
-    Object? name = freezed,
-    Object? width = null,
-    Object? height = null,
+    Object? url = freezed,
+    Object? id = null,
+    Object? alt = null,
+    Object? updatedAt = null,
+    Object? createdAt = null,
   }) {
     return _then(_$PropertyImageImpl(
-      imageUrl: null == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
-      propertyID: freezed == propertyID
-          ? _value.propertyID
-          : propertyID // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageID: freezed == imageID
-          ? _value.imageID
-          : imageID // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      width: null == width
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as double,
-      height: null == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as double,
+      alt: null == alt
+          ? _value.alt
+          : alt // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -687,32 +634,29 @@ class __$$PropertyImageImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PropertyImageImpl implements _PropertyImage {
   const _$PropertyImageImpl(
-      {required this.imageUrl,
-      this.propertyID,
-      this.imageID,
-      this.name,
-      required this.width,
-      required this.height});
+      {this.url,
+      required this.id,
+      required this.alt,
+      required this.updatedAt,
+      required this.createdAt});
 
   factory _$PropertyImageImpl.fromJson(Map<String, dynamic> json) =>
       _$$PropertyImageImplFromJson(json);
 
   @override
-  final String imageUrl;
+  final String? url;
   @override
-  final String? propertyID;
+  final String id;
   @override
-  final String? imageID;
+  final String alt;
   @override
-  final String? name;
+  final String updatedAt;
   @override
-  final double width;
-  @override
-  final double height;
+  final String createdAt;
 
   @override
   String toString() {
-    return 'PropertyImage(imageUrl: $imageUrl, propertyID: $propertyID, imageID: $imageID, name: $name, width: $width, height: $height)';
+    return 'PropertyImage(url: $url, id: $id, alt: $alt, updatedAt: $updatedAt, createdAt: $createdAt)';
   }
 
   @override
@@ -720,20 +664,19 @@ class _$PropertyImageImpl implements _PropertyImage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PropertyImageImpl &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
-            (identical(other.propertyID, propertyID) ||
-                other.propertyID == propertyID) &&
-            (identical(other.imageID, imageID) || other.imageID == imageID) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.width, width) || other.width == width) &&
-            (identical(other.height, height) || other.height == height));
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.alt, alt) || other.alt == alt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, imageUrl, propertyID, imageID, name, width, height);
+  int get hashCode =>
+      Object.hash(runtimeType, url, id, alt, updatedAt, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -751,28 +694,25 @@ class _$PropertyImageImpl implements _PropertyImage {
 
 abstract class _PropertyImage implements PropertyImage {
   const factory _PropertyImage(
-      {required final String imageUrl,
-      final String? propertyID,
-      final String? imageID,
-      final String? name,
-      required final double width,
-      required final double height}) = _$PropertyImageImpl;
+      {final String? url,
+      required final String id,
+      required final String alt,
+      required final String updatedAt,
+      required final String createdAt}) = _$PropertyImageImpl;
 
   factory _PropertyImage.fromJson(Map<String, dynamic> json) =
       _$PropertyImageImpl.fromJson;
 
   @override
-  String get imageUrl;
+  String? get url;
   @override
-  String? get propertyID;
+  String get id;
   @override
-  String? get imageID;
+  String get alt;
   @override
-  String? get name;
+  String get updatedAt;
   @override
-  double get width;
-  @override
-  double get height;
+  String get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$PropertyImageImplCopyWith<_$PropertyImageImpl> get copyWith =>
@@ -789,6 +729,9 @@ mixin _$PropertyPurchase {
   DateTime get date => throw _privateConstructorUsedError;
   Property get propertyPurchased => throw _privateConstructorUsedError;
   PropertyPurchasedBy get propertyPurchasedBy =>
+      throw _privateConstructorUsedError;
+  String? get purchaseID => throw _privateConstructorUsedError;
+  List<PropertyPurchaseDocuments> get documents =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -807,7 +750,9 @@ abstract class $PropertyPurchaseCopyWith<$Res> {
       {double price,
       DateTime date,
       Property propertyPurchased,
-      PropertyPurchasedBy propertyPurchasedBy});
+      PropertyPurchasedBy propertyPurchasedBy,
+      String? purchaseID,
+      List<PropertyPurchaseDocuments> documents});
 
   $PropertyCopyWith<$Res> get propertyPurchased;
   $PropertyPurchasedByCopyWith<$Res> get propertyPurchasedBy;
@@ -830,6 +775,8 @@ class _$PropertyPurchaseCopyWithImpl<$Res, $Val extends PropertyPurchase>
     Object? date = null,
     Object? propertyPurchased = null,
     Object? propertyPurchasedBy = null,
+    Object? purchaseID = freezed,
+    Object? documents = null,
   }) {
     return _then(_value.copyWith(
       price: null == price
@@ -848,6 +795,14 @@ class _$PropertyPurchaseCopyWithImpl<$Res, $Val extends PropertyPurchase>
           ? _value.propertyPurchasedBy
           : propertyPurchasedBy // ignore: cast_nullable_to_non_nullable
               as PropertyPurchasedBy,
+      purchaseID: freezed == purchaseID
+          ? _value.purchaseID
+          : purchaseID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      documents: null == documents
+          ? _value.documents
+          : documents // ignore: cast_nullable_to_non_nullable
+              as List<PropertyPurchaseDocuments>,
     ) as $Val);
   }
 
@@ -881,7 +836,9 @@ abstract class _$$PropertyPurchaseImplCopyWith<$Res>
       {double price,
       DateTime date,
       Property propertyPurchased,
-      PropertyPurchasedBy propertyPurchasedBy});
+      PropertyPurchasedBy propertyPurchasedBy,
+      String? purchaseID,
+      List<PropertyPurchaseDocuments> documents});
 
   @override
   $PropertyCopyWith<$Res> get propertyPurchased;
@@ -904,6 +861,8 @@ class __$$PropertyPurchaseImplCopyWithImpl<$Res>
     Object? date = null,
     Object? propertyPurchased = null,
     Object? propertyPurchasedBy = null,
+    Object? purchaseID = freezed,
+    Object? documents = null,
   }) {
     return _then(_$PropertyPurchaseImpl(
       price: null == price
@@ -922,6 +881,14 @@ class __$$PropertyPurchaseImplCopyWithImpl<$Res>
           ? _value.propertyPurchasedBy
           : propertyPurchasedBy // ignore: cast_nullable_to_non_nullable
               as PropertyPurchasedBy,
+      purchaseID: freezed == purchaseID
+          ? _value.purchaseID
+          : purchaseID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      documents: null == documents
+          ? _value._documents
+          : documents // ignore: cast_nullable_to_non_nullable
+              as List<PropertyPurchaseDocuments>,
     ));
   }
 }
@@ -933,7 +900,10 @@ class _$PropertyPurchaseImpl implements _PropertyPurchase {
       {required this.price,
       required this.date,
       required this.propertyPurchased,
-      required this.propertyPurchasedBy});
+      required this.propertyPurchasedBy,
+      this.purchaseID,
+      required final List<PropertyPurchaseDocuments> documents})
+      : _documents = documents;
 
   factory _$PropertyPurchaseImpl.fromJson(Map<String, dynamic> json) =>
       _$$PropertyPurchaseImplFromJson(json);
@@ -946,10 +916,19 @@ class _$PropertyPurchaseImpl implements _PropertyPurchase {
   final Property propertyPurchased;
   @override
   final PropertyPurchasedBy propertyPurchasedBy;
+  @override
+  final String? purchaseID;
+  final List<PropertyPurchaseDocuments> _documents;
+  @override
+  List<PropertyPurchaseDocuments> get documents {
+    if (_documents is EqualUnmodifiableListView) return _documents;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_documents);
+  }
 
   @override
   String toString() {
-    return 'PropertyPurchase(price: $price, date: $date, propertyPurchased: $propertyPurchased, propertyPurchasedBy: $propertyPurchasedBy)';
+    return 'PropertyPurchase(price: $price, date: $date, propertyPurchased: $propertyPurchased, propertyPurchasedBy: $propertyPurchasedBy, purchaseID: $purchaseID, documents: $documents)';
   }
 
   @override
@@ -962,13 +941,23 @@ class _$PropertyPurchaseImpl implements _PropertyPurchase {
             (identical(other.propertyPurchased, propertyPurchased) ||
                 other.propertyPurchased == propertyPurchased) &&
             (identical(other.propertyPurchasedBy, propertyPurchasedBy) ||
-                other.propertyPurchasedBy == propertyPurchasedBy));
+                other.propertyPurchasedBy == propertyPurchasedBy) &&
+            (identical(other.purchaseID, purchaseID) ||
+                other.purchaseID == purchaseID) &&
+            const DeepCollectionEquality()
+                .equals(other._documents, _documents));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, price, date, propertyPurchased, propertyPurchasedBy);
+      runtimeType,
+      price,
+      date,
+      propertyPurchased,
+      propertyPurchasedBy,
+      purchaseID,
+      const DeepCollectionEquality().hash(_documents));
 
   @JsonKey(ignore: true)
   @override
@@ -990,7 +979,9 @@ abstract class _PropertyPurchase implements PropertyPurchase {
           {required final double price,
           required final DateTime date,
           required final Property propertyPurchased,
-          required final PropertyPurchasedBy propertyPurchasedBy}) =
+          required final PropertyPurchasedBy propertyPurchasedBy,
+          final String? purchaseID,
+          required final List<PropertyPurchaseDocuments> documents}) =
       _$PropertyPurchaseImpl;
 
   factory _PropertyPurchase.fromJson(Map<String, dynamic> json) =
@@ -1004,6 +995,10 @@ abstract class _PropertyPurchase implements PropertyPurchase {
   Property get propertyPurchased;
   @override
   PropertyPurchasedBy get propertyPurchasedBy;
+  @override
+  String? get purchaseID;
+  @override
+  List<PropertyPurchaseDocuments> get documents;
   @override
   @JsonKey(ignore: true)
   _$$PropertyPurchaseImplCopyWith<_$PropertyPurchaseImpl> get copyWith =>
@@ -1163,4 +1158,165 @@ abstract class _PropertyPurchasedBy implements PropertyPurchasedBy {
   @JsonKey(ignore: true)
   _$$PropertyPurchasedByImplCopyWith<_$PropertyPurchasedByImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+PropertyPurchaseDocuments _$PropertyPurchaseDocumentsFromJson(
+    Map<String, dynamic> json) {
+  return _PropertyPurchaseDocuments.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PropertyPurchaseDocuments {
+  String get name => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PropertyPurchaseDocumentsCopyWith<PropertyPurchaseDocuments> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PropertyPurchaseDocumentsCopyWith<$Res> {
+  factory $PropertyPurchaseDocumentsCopyWith(PropertyPurchaseDocuments value,
+          $Res Function(PropertyPurchaseDocuments) then) =
+      _$PropertyPurchaseDocumentsCopyWithImpl<$Res, PropertyPurchaseDocuments>;
+  @useResult
+  $Res call({String name, String url});
+}
+
+/// @nodoc
+class _$PropertyPurchaseDocumentsCopyWithImpl<$Res,
+        $Val extends PropertyPurchaseDocuments>
+    implements $PropertyPurchaseDocumentsCopyWith<$Res> {
+  _$PropertyPurchaseDocumentsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? url = null,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PropertyPurchaseDocumentsImplCopyWith<$Res>
+    implements $PropertyPurchaseDocumentsCopyWith<$Res> {
+  factory _$$PropertyPurchaseDocumentsImplCopyWith(
+          _$PropertyPurchaseDocumentsImpl value,
+          $Res Function(_$PropertyPurchaseDocumentsImpl) then) =
+      __$$PropertyPurchaseDocumentsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String name, String url});
+}
+
+/// @nodoc
+class __$$PropertyPurchaseDocumentsImplCopyWithImpl<$Res>
+    extends _$PropertyPurchaseDocumentsCopyWithImpl<$Res,
+        _$PropertyPurchaseDocumentsImpl>
+    implements _$$PropertyPurchaseDocumentsImplCopyWith<$Res> {
+  __$$PropertyPurchaseDocumentsImplCopyWithImpl(
+      _$PropertyPurchaseDocumentsImpl _value,
+      $Res Function(_$PropertyPurchaseDocumentsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? url = null,
+  }) {
+    return _then(_$PropertyPurchaseDocumentsImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PropertyPurchaseDocumentsImpl implements _PropertyPurchaseDocuments {
+  const _$PropertyPurchaseDocumentsImpl(
+      {required this.name, required this.url});
+
+  factory _$PropertyPurchaseDocumentsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PropertyPurchaseDocumentsImplFromJson(json);
+
+  @override
+  final String name;
+  @override
+  final String url;
+
+  @override
+  String toString() {
+    return 'PropertyPurchaseDocuments(name: $name, url: $url)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PropertyPurchaseDocumentsImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.url, url) || other.url == url));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, url);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PropertyPurchaseDocumentsImplCopyWith<_$PropertyPurchaseDocumentsImpl>
+      get copyWith => __$$PropertyPurchaseDocumentsImplCopyWithImpl<
+          _$PropertyPurchaseDocumentsImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PropertyPurchaseDocumentsImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PropertyPurchaseDocuments implements PropertyPurchaseDocuments {
+  const factory _PropertyPurchaseDocuments(
+      {required final String name,
+      required final String url}) = _$PropertyPurchaseDocumentsImpl;
+
+  factory _PropertyPurchaseDocuments.fromJson(Map<String, dynamic> json) =
+      _$PropertyPurchaseDocumentsImpl.fromJson;
+
+  @override
+  String get name;
+  @override
+  String get url;
+  @override
+  @JsonKey(ignore: true)
+  _$$PropertyPurchaseDocumentsImplCopyWith<_$PropertyPurchaseDocumentsImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -12,12 +12,93 @@ class SignInPage extends HookConsumerWidget {
     // text controllers
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
+
+    // show loading
+    final isLoading = useState(false);
+
+    // listen to auth state
+    ref.listen(authNotifierProvider, (previous, next) {
+      previous?.when(data: (data) {
+        // debug log session
+        debugPrint('Checking current user $data');
+        if (data != null) {
+          context.go('/');
+        }
+      }, error: (error, stackTrace) {
+        // debug log error and object
+        debugPrint('Checking current user $error');
+        return const Text('Welcome');
+      }, loading: () {
+        if (isLoading.value) {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 20.h,
+                ),
+                content: const Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text('Signing in...'),
+                  ],
+                ),
+              );
+            },
+          );
+        }
+      });
+    });
+
+    // validate form
+    bool validateForm() {
+      if (emailController.text.isEmpty) {
+        return false;
+      }
+      if (passwordController.text.isEmpty) {
+        return false;
+      }
+      return true;
+    }
+
+    // focus node
+    final emailFocusNode = useFocusNode();
+    final passwordFocusNode = useFocusNode();
+
+    // // show dialog
+    // if (isLoading.value) {
+    //   showDialog(
+    //     context: context,
+    //     builder: (context) {
+    //       return const AlertDialog(
+    //         content: Column(
+    //           children: [
+    //             CircularProgressIndicator(),
+    //             SizedBox(
+    //               height: 10,
+    //             ),
+    //             Text('Signing in...'),
+    //           ],
+    //         ),
+    //       );
+    //     },
+    //   );
+    // }
+
     return Scaffold(
       // backgroundColor: Colors.amberAccent,
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(
+            autovalidateMode: AutovalidateMode.always,
+            onChanged: () {
+              validateForm();
+            },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -33,6 +114,12 @@ class SignInPage extends HookConsumerWidget {
                   ),
                   TextFormField(
                     controller: emailController,
+                    focusNode: emailFocusNode,
+                    textInputAction: TextInputAction.next,
+                    onSaved: (newValue) {
+                      // TODO: implement on saved
+                      emailFocusNode.nextFocus();
+                    },
                     decoration: const InputDecoration(
                       labelText: 'Email',
                       border: OutlineInputBorder(),
@@ -43,6 +130,7 @@ class SignInPage extends HookConsumerWidget {
                   ),
                   TextFormField(
                     controller: passwordController,
+                    focusNode: passwordFocusNode,
                     decoration: const InputDecoration(
                       labelText: 'Password',
                       border: OutlineInputBorder(),
@@ -70,9 +158,22 @@ class SignInPage extends HookConsumerWidget {
                     height: 5.h,
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      // TODO: implement sign in
-                    },
+                    onPressed: validateForm()
+                        ? () async {
+                            // TODO: implement sign in
+                            if (validateForm()) {
+                              isLoading.value = true;
+                              // sign in user
+                              await ref
+                                  .read(authNotifierProvider.notifier)
+                                  .login(
+                                    email: emailController.text.trim(),
+                                    password: passwordController.text.trim(),
+                                  );
+                              isLoading.value = false;
+                            }
+                          }
+                        : null,
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(
                         100.w,

@@ -10,11 +10,12 @@ class Property with _$Property {
   const factory Property({
     required String name,
     required String value,
-    String? propertyID,
+    required String id,
     String? category,
-    PropertyLocation? location,
-    DateTime? createdAt,
-    DateTime? updatedAt,
+    required PropertyLocation location,
+    required String createdAt,
+    required String updatedAt,
+    required String description,
     List<PropertyImage>? images,
   }) = _Property;
 
@@ -26,9 +27,7 @@ class Property with _$Property {
 @freezed
 class PropertyLocation with _$PropertyLocation {
   const factory PropertyLocation({
-    required double latitude,
-    required double longitude,
-    String? address,
+    required String address,
     PropertyLocationType? type,
   }) = _PropertyLocation;
 
@@ -47,12 +46,11 @@ enum PropertyLocationType {
 @freezed
 class PropertyImage with _$PropertyImage {
   const factory PropertyImage({
-    required String imageUrl,
-    String? propertyID,
-    String? imageID,
-    String? name,
-    required double width,
-    required double height,
+    String? url,
+    required String id,
+    required String alt,
+    required String updatedAt,
+    required String createdAt,
   }) = _PropertyImage;
 
   factory PropertyImage.fromJson(Map<String, Object?> json) =>
@@ -67,6 +65,8 @@ class PropertyPurchase with _$PropertyPurchase {
     required DateTime date,
     required Property propertyPurchased,
     required PropertyPurchasedBy propertyPurchasedBy,
+    String? purchaseID,
+    required List<PropertyPurchaseDocuments> documents,
   }) = _PropertyPurchase;
 
   factory PropertyPurchase.fromJson(Map<String, Object?> json) =>
@@ -83,4 +83,16 @@ class PropertyPurchasedBy with _$PropertyPurchasedBy {
 
   factory PropertyPurchasedBy.fromJson(Map<String, Object?> json) =>
       _$PropertyPurchasedByFromJson(json);
+}
+
+// property purchase documents
+@freezed
+class PropertyPurchaseDocuments with _$PropertyPurchaseDocuments {
+  const factory PropertyPurchaseDocuments({
+    required String name,
+    required String url,
+  }) = _PropertyPurchaseDocuments;
+
+  factory PropertyPurchaseDocuments.fromJson(Map<String, Object?> json) =>
+      _$PropertyPurchaseDocumentsFromJson(json);
 }
