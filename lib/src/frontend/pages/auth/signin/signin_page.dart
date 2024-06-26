@@ -9,60 +9,28 @@ class SignInPage extends HookConsumerWidget {
   const SignInPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // form global key
+    final formKey = GlobalKey<FormState>();
     // text controllers
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
 
+    // check form value
+    final isFormValid = useState(false);
+
     // show loading
     final isLoading = useState(false);
 
-    // listen to auth state
-    ref.listen(authNotifierProvider, (previous, next) {
-      previous?.when(data: (data) {
-        // debug log session
-        debugPrint('Checking current user $data');
-        if (data != null) {
-          context.go('/');
-        }
-      }, error: (error, stackTrace) {
-        // debug log error and object
-        debugPrint('Checking current user $error');
-        return const Text('Welcome');
-      }, loading: () {
-        if (isLoading.value) {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 20.h,
-                ),
-                content: const Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    CircularProgressIndicator(),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text('Signing in...'),
-                  ],
-                ),
-              );
-            },
-          );
-        }
-      });
-    });
-
     // validate form
-    bool validateForm() {
-      if (emailController.text.isEmpty) {
-        return false;
+    void validateForm() {
+      if (emailController.text.isNotEmpty &&
+          passwordController.text.isNotEmpty &&
+          isValidEmail(emailController.text.trim()) &&
+          isValidPassword(passwordController.text.trim())) {
+        isFormValid.value = true;
+      } else {
+        isFormValid.value = false;
       }
-      if (passwordController.text.isEmpty) {
-        return false;
-      }
-      return true;
     }
 
     // focus node
@@ -95,10 +63,9 @@ class SignInPage extends HookConsumerWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(
+            // key: formKey,
             autovalidateMode: AutovalidateMode.always,
-            onChanged: () {
-              validateForm();
-            },
+            onChanged: validateForm,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -115,6 +82,17 @@ class SignInPage extends HookConsumerWidget {
                   TextFormField(
                     controller: emailController,
                     focusNode: emailFocusNode,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      // check if email is valid
+                      if (isValidEmail(value)) {
+                        return null;
+                      } else {
+                        return 'Please enter a valid email';
+                      }
+                    },
                     textInputAction: TextInputAction.next,
                     onSaved: (newValue) {
                       // TODO: implement on saved
@@ -131,6 +109,17 @@ class SignInPage extends HookConsumerWidget {
                   TextFormField(
                     controller: passwordController,
                     focusNode: passwordFocusNode,
+                    validator: (value) {
+                      // check if password is valid
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      if (isValidPassword(value)) {
+                        return null;
+                      } else {
+                        return 'Password must contain atleast 8 characters, 1 uppercase, 1 lowercase, 1 number and 1 special character';
+                      }
+                    },
                     decoration: const InputDecoration(
                       labelText: 'Password',
                       border: OutlineInputBorder(),
@@ -158,20 +147,38 @@ class SignInPage extends HookConsumerWidget {
                     height: 5.h,
                   ),
                   ElevatedButton(
-                    onPressed: validateForm()
+                    onPressed: isFormValid.value == true &&
+                            isLoading.value == false
                         ? () async {
                             // TODO: implement sign in
-                            if (validateForm()) {
+                            try {
                               isLoading.value = true;
+
+                              // show loading snack bar
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Signing in...'),
+                                ),
+                              );
                               // sign in user
                               await ref
-                                  .read(authNotifierProvider.notifier)
+                                  .read(authControllerProvider.notifier)
                                   .login(
                                     email: emailController.text.trim(),
                                     password: passwordController.text.trim(),
                                   );
-                              isLoading.value = false;
+                            } catch (e) {
+                              // show snackbar
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    e.toString(),
+                                  ),
+                                ),
+                              );
                             }
+
+                            isLoading.value = false;
                           }
                         : null,
                     style: ElevatedButton.styleFrom(

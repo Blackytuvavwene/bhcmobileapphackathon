@@ -39,38 +39,28 @@ _$PropertyLocationImpl _$$PropertyLocationImplFromJson(
         Map<String, dynamic> json) =>
     _$PropertyLocationImpl(
       address: json['address'] as String,
-      type: $enumDecodeNullable(_$PropertyLocationTypeEnumMap, json['type']),
+      type: json['type'] as String?,
     );
 
 Map<String, dynamic> _$$PropertyLocationImplToJson(
         _$PropertyLocationImpl instance) =>
     <String, dynamic>{
       'address': instance.address,
-      'type': _$PropertyLocationTypeEnumMap[instance.type],
+      'type': instance.type,
     };
-
-const _$PropertyLocationTypeEnumMap = {
-  PropertyLocationType.city: 'city',
-  PropertyLocationType.village: 'village',
-  PropertyLocationType.town: 'town',
-};
 
 _$PropertyImageImpl _$$PropertyImageImplFromJson(Map<String, dynamic> json) =>
     _$PropertyImageImpl(
-      url: json['url'] as String?,
       id: json['id'] as String,
-      alt: json['alt'] as String,
-      updatedAt: json['updatedAt'] as String,
-      createdAt: json['createdAt'] as String,
+      image: json['image'] == null
+          ? null
+          : PropertyImageModel.fromJson(json['image'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PropertyImageImplToJson(_$PropertyImageImpl instance) =>
     <String, dynamic>{
-      'url': instance.url,
       'id': instance.id,
-      'alt': instance.alt,
-      'updatedAt': instance.updatedAt,
-      'createdAt': instance.createdAt,
+      'image': instance.image,
     };
 
 _$PropertyPurchaseImpl _$$PropertyPurchaseImplFromJson(
@@ -125,5 +115,88 @@ Map<String, dynamic> _$$PropertyPurchaseDocumentsImplToJson(
         _$PropertyPurchaseDocumentsImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'url': instance.url,
+    };
+
+_$PropertyImageModelImpl _$$PropertyImageModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PropertyImageModelImpl(
+      id: json['id'] as String?,
+      alt: json['alt'] as String?,
+      filename: json['filename'] as String?,
+      mimeType: json['mimeType'] as String?,
+      filesize: (json['filesize'] as num?)?.toInt(),
+      width: (json['width'] as num?)?.toInt(),
+      height: (json['height'] as num?)?.toInt(),
+      focalX: (json['focalX'] as num?)?.toInt(),
+      focalY: (json['focalY'] as num?)?.toInt(),
+      sizes: json['sizes'] == null
+          ? null
+          : PropertyImageSizes.fromJson(json['sizes'] as Map<String, dynamic>),
+      createdAt: json['createdAt'] as String?,
+      updatedAt: json['updatedAt'] as String?,
+      url: json['url'] as String?,
+    );
+
+Map<String, dynamic> _$$PropertyImageModelImplToJson(
+        _$PropertyImageModelImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'alt': instance.alt,
+      'filename': instance.filename,
+      'mimeType': instance.mimeType,
+      'filesize': instance.filesize,
+      'width': instance.width,
+      'height': instance.height,
+      'focalX': instance.focalX,
+      'focalY': instance.focalY,
+      'sizes': instance.sizes,
+      'createdAt': instance.createdAt,
+      'updatedAt': instance.updatedAt,
+      'url': instance.url,
+    };
+
+_$PropertyImageSizesImpl _$$PropertyImageSizesImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PropertyImageSizesImpl(
+      thumbnail: json['thumbnail'] == null
+          ? null
+          : PropertyThumbnail.fromJson(
+              json['thumbnail'] as Map<String, dynamic>),
+      card: json['card'] == null
+          ? null
+          : PropertyThumbnail.fromJson(json['card'] as Map<String, dynamic>),
+      tablet: json['tablet'] == null
+          ? null
+          : PropertyThumbnail.fromJson(json['tablet'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$PropertyImageSizesImplToJson(
+        _$PropertyImageSizesImpl instance) =>
+    <String, dynamic>{
+      'thumbnail': instance.thumbnail,
+      'card': instance.card,
+      'tablet': instance.tablet,
+    };
+
+_$PropertyThumbnailImpl _$$PropertyThumbnailImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PropertyThumbnailImpl(
+      width: (json['width'] as num?)?.toInt(),
+      height: (json['height'] as num?)?.toInt(),
+      mimeType: json['mimeType'] as String?,
+      filesize: (json['filesize'] as num?)?.toInt(),
+      filename: json['filename'] as String?,
+      url: json['url'] as String?,
+    );
+
+Map<String, dynamic> _$$PropertyThumbnailImplToJson(
+        _$PropertyThumbnailImpl instance) =>
+    <String, dynamic>{
+      'width': instance.width,
+      'height': instance.height,
+      'mimeType': instance.mimeType,
+      'filesize': instance.filesize,
+      'filename': instance.filename,
       'url': instance.url,
     };

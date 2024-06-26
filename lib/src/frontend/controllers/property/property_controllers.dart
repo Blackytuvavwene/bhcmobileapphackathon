@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:appwrite/appwrite.dart';
 import 'package:bhcmobileapp/src/src.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // import generated code
@@ -86,6 +89,58 @@ class PropertyNotifier extends _$PropertyNotifier {
     debugPrint('Property: $propertyDocument');
     // map document to property
     final property = Property.fromJson(propertyDocument.data);
+    return property;
+  }
+}
+
+@riverpod
+class PropertiesController extends _$PropertiesController {
+  @override
+  Future<List<Property>> build() async {
+    state = const AsyncLoading();
+
+    // get properties
+
+    final response =
+        await get(Uri.parse('${ApiEndpoint.endpoint}/property'), headers: {
+      'Content-Type': 'application/json',
+    });
+
+    print('Properties from backend: ${response.body}');
+
+    // check statusCode
+    if (response.statusCode != 200) {
+      throw response.body;
+    }
+
+    // print response
+    print(response.body);
+
+    final json = jsonDecode(response.body) as Map<String, dynamic>;
+
+    final List propertyList = json['docs'];
+
+    final properties = propertyList.map((e) => Property.fromJson(e)).toList();
+    return properties;
+  }
+}
+
+@riverpod
+class PropertyController extends _$PropertyController {
+  @override
+  Future<Property> build({
+    required String propertyID,
+  }) async {
+    final response = await get(
+        Uri.parse('${ApiEndpoint.endpoint}/property/$propertyID'),
+        headers: {
+          'Content-Type': 'application/json',
+        });
+
+    print('Properties from backend: ${response.body}');
+
+    final property = Property.fromJson(jsonDecode(response.body));
+
     return property;
   }
 }

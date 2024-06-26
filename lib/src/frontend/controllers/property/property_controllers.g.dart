@@ -187,5 +187,168 @@ class _PropertyNotifierProviderElement
   @override
   String get propertyID => (origin as PropertyNotifierProvider).propertyID;
 }
+
+String _$propertiesControllerHash() =>
+    r'19c72dbb85fa9e40e032e369941d5f716582e874';
+
+/// See also [PropertiesController].
+@ProviderFor(PropertiesController)
+final propertiesControllerProvider = AutoDisposeAsyncNotifierProvider<
+    PropertiesController, List<Property>>.internal(
+  PropertiesController.new,
+  name: r'propertiesControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$propertiesControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$PropertiesController = AutoDisposeAsyncNotifier<List<Property>>;
+String _$propertyControllerHash() =>
+    r'c316d7c61d3a45b72f9ca5cb0145067b6f96096e';
+
+abstract class _$PropertyController
+    extends BuildlessAutoDisposeAsyncNotifier<Property> {
+  late final String propertyID;
+
+  FutureOr<Property> build({
+    required String propertyID,
+  });
+}
+
+/// See also [PropertyController].
+@ProviderFor(PropertyController)
+const propertyControllerProvider = PropertyControllerFamily();
+
+/// See also [PropertyController].
+class PropertyControllerFamily extends Family<AsyncValue<Property>> {
+  /// See also [PropertyController].
+  const PropertyControllerFamily();
+
+  /// See also [PropertyController].
+  PropertyControllerProvider call({
+    required String propertyID,
+  }) {
+    return PropertyControllerProvider(
+      propertyID: propertyID,
+    );
+  }
+
+  @override
+  PropertyControllerProvider getProviderOverride(
+    covariant PropertyControllerProvider provider,
+  ) {
+    return call(
+      propertyID: provider.propertyID,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'propertyControllerProvider';
+}
+
+/// See also [PropertyController].
+class PropertyControllerProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<PropertyController, Property> {
+  /// See also [PropertyController].
+  PropertyControllerProvider({
+    required String propertyID,
+  }) : this._internal(
+          () => PropertyController()..propertyID = propertyID,
+          from: propertyControllerProvider,
+          name: r'propertyControllerProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$propertyControllerHash,
+          dependencies: PropertyControllerFamily._dependencies,
+          allTransitiveDependencies:
+              PropertyControllerFamily._allTransitiveDependencies,
+          propertyID: propertyID,
+        );
+
+  PropertyControllerProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.propertyID,
+  }) : super.internal();
+
+  final String propertyID;
+
+  @override
+  FutureOr<Property> runNotifierBuild(
+    covariant PropertyController notifier,
+  ) {
+    return notifier.build(
+      propertyID: propertyID,
+    );
+  }
+
+  @override
+  Override overrideWith(PropertyController Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: PropertyControllerProvider._internal(
+        () => create()..propertyID = propertyID,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        propertyID: propertyID,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeAsyncNotifierProviderElement<PropertyController, Property>
+      createElement() {
+    return _PropertyControllerProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is PropertyControllerProvider &&
+        other.propertyID == propertyID;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, propertyID.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin PropertyControllerRef on AutoDisposeAsyncNotifierProviderRef<Property> {
+  /// The parameter `propertyID` of this provider.
+  String get propertyID;
+}
+
+class _PropertyControllerProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<PropertyController,
+        Property> with PropertyControllerRef {
+  _PropertyControllerProviderElement(super.provider);
+
+  @override
+  String get propertyID => (origin as PropertyControllerProvider).propertyID;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

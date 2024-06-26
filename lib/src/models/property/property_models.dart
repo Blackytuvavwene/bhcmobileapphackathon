@@ -1,3 +1,4 @@
+import 'package:flutter/rendering.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // import generated code
@@ -28,7 +29,7 @@ class Property with _$Property {
 class PropertyLocation with _$PropertyLocation {
   const factory PropertyLocation({
     required String address,
-    PropertyLocationType? type,
+    String? type,
   }) = _PropertyLocation;
 
   factory PropertyLocation.fromJson(Map<String, Object?> json) =>
@@ -46,11 +47,8 @@ enum PropertyLocationType {
 @freezed
 class PropertyImage with _$PropertyImage {
   const factory PropertyImage({
-    String? url,
     required String id,
-    required String alt,
-    required String updatedAt,
-    required String createdAt,
+    PropertyImageModel? image,
   }) = _PropertyImage;
 
   factory PropertyImage.fromJson(Map<String, Object?> json) =>
@@ -95,4 +93,53 @@ class PropertyPurchaseDocuments with _$PropertyPurchaseDocuments {
 
   factory PropertyPurchaseDocuments.fromJson(Map<String, Object?> json) =>
       _$PropertyPurchaseDocumentsFromJson(json);
+}
+
+@freezed
+class PropertyImageModel with _$PropertyImageModel {
+  const factory PropertyImageModel({
+    String? id,
+    String? alt,
+    String? filename,
+    String? mimeType,
+    int? filesize,
+    int? width,
+    int? height,
+    int? focalX,
+    int? focalY,
+    PropertyImageSizes? sizes,
+    String? createdAt,
+    String? updatedAt,
+    String? url,
+  }) = _PropertyImageModel;
+
+  factory PropertyImageModel.fromJson(Map<String, Object?> json) =>
+      _$PropertyImageModelFromJson(json);
+}
+
+@freezed
+class PropertyImageSizes with _$PropertyImageSizes {
+  const factory PropertyImageSizes({
+    PropertyThumbnail? thumbnail,
+    PropertyThumbnail? card,
+    PropertyThumbnail? tablet,
+  }) = _PropertyImageSizes;
+
+  factory PropertyImageSizes.fromJson(Map<String, Object?> json) =>
+      _$PropertyImageSizesFromJson(json);
+}
+
+@freezed
+class PropertyThumbnail with _$PropertyThumbnail {
+  const factory PropertyThumbnail({
+    int? width,
+    int? height,
+    String? mimeType,
+    int? filesize,
+    String? filename,
+    String? url,
+  }) = _PropertyThumbnail;
+
+  factory PropertyThumbnail.fromJson(Map<String, Object?> json) =>
+      _$PropertyThumbnailFromJson(json);
 }

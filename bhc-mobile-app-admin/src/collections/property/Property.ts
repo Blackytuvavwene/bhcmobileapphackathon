@@ -11,6 +11,27 @@ const Property : CollectionConfig = {
     admin:{
         useAsTitle: 'name',
     },
+    access: {
+        read: () => true,
+        create: ({req:  {user}}) => {
+            // return true is user role is admin
+            if(user.role === 'admin'){
+                return true
+            }
+        },
+        update: ({req:  {user}}) => {
+            // return true is user role is admin
+            if(user.role === 'admin'){
+                return true
+            }
+        },
+        delete: ({req:  {user}}) => {
+            // return true is user role is admin
+            if(user.role === 'admin'){
+                return true
+            }
+        },
+    },
     fields: [
         // Add more fields as needed
         {

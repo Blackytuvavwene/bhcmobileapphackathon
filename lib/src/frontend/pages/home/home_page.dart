@@ -1,5 +1,6 @@
 import 'package:bhcmobileapp/src/router/controllers/app_router_controllers.dart';
 import 'package:bhcmobileapp/src/src.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:extended_sliver/extended_sliver.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -80,18 +81,18 @@ class HomePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // get the current logged in user
-    final user = ref.watch(getCurrentUserProvider);
+    final user = ref.watch(authControllerProvider);
     // debug log session
     debugPrint('Home session: $user');
 
     // get properties
-    final properties = ref.watch(propertiesNotifierProvider);
+    final properties = ref.watch(propertiesControllerProvider);
     return CustomScrollView(
       slivers: [
         SliverAppBar(
           title: user.when(
               skipError: true,
-              data: (data) => Text(data.name),
+              data: (data) => Text(data.toString()),
               error: (objec, error) {
                 // debug log error and object
                 debugPrint('Checking current user $objec ${error.toString()}');
@@ -140,12 +141,31 @@ class HomePage extends HookConsumerWidget {
           return SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return Text(data[index].name);
+                print(
+                    'Image link: ${ApiEndpoint.endpoint}/${data[index].images![0].image!.url.toString()}');
+                return InkWell(
+                  onTap: () {
+                    context.pushNamed(AppRoutes.property.name,
+                        pathParameters: {'id': data[index].id.toString()});
+                  },
+                  child: SizedBox(
+                    height: 15.h,
+                    child: Column(
+                      children: [
+                        ExtendedImage.network(
+                            height: 8.h,
+                            'http://localhost:3000${data[index].images![0].image!.url.toString()}'),
+                        Text(data[index].name.toString()),
+                      ],
+                    ),
+                  ),
+                );
               },
               childCount: data.length,
             ),
           );
         }, error: (objec, error) {
+          print(objec.toString() + error.toString());
           return SliverFillRemaining(
             child: Text(error.toString()),
           );

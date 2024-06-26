@@ -18,10 +18,15 @@ const Users: CollectionConfig = {
           label: 'Admin',
         },
         {
-          value: 'user',
-          label: 'User'
+          value: 'tenant',
+          label: 'Tenant'
         }
       ]
+    },
+    {
+      name: 'name',
+      type: 'text',
+      label: 'Full Name'
     }
   ],
 }

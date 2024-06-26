@@ -49,6 +49,12 @@ class AppRoutes {
     path: '/profile',
     name: 'Profile',
   );
+
+  // property page
+  static const AppRouteModel property = AppRouteModel(
+    path: 'property',
+    name: 'Property',
+  );
 }
 
 // define our app router provider for the pages in the app
@@ -100,12 +106,25 @@ GoRouter appRouter(AppRouterRef ref) {
         routes: [
           // add home page
           GoRoute(
-            path: AppRoutes.home.path,
-            name: AppRoutes.home.name,
-            builder: (context, state) {
-              return const HomePage();
-            },
-          ),
+              path: AppRoutes.home.path,
+              name: AppRoutes.home.name,
+              builder: (context, state) {
+                return const HomePage();
+              },
+              routes: [
+                // add property page
+                GoRoute(
+                  path: '${AppRoutes.property.path}:id',
+                  name: AppRoutes.property.name,
+                  builder: (context, state) {
+                    // get property id
+                    final propertyId = state.pathParameters['id']!;
+                    return PropertyPage(
+                      propertyId: propertyId,
+                    );
+                  },
+                ),
+              ]),
           // add help page
           GoRoute(
             path: AppRoutes.help.path,
